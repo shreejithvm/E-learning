@@ -12,19 +12,33 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+
+import os
+from dotenv import load_dotenv
+
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+RAZORPAY_KEY = os.getenv("RAZORPAY_KEY")
+RAZORPAY_SECRET = os.getenv("RAZORPAY_SECRET")
+SECRET_KEY = os.getenv("SECRET_KEY")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+#######################
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+jtxr@qhdx9e2%!#l8uf$!-8%^h9)g@(!qwdoeekohe3+3!y#@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = os.getenv("DEBUG") == "True"
 ALLOWED_HOSTS = []
 
 
@@ -125,3 +139,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL='instructorApp.User'
+  
